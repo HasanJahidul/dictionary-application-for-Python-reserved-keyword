@@ -2,17 +2,19 @@ from dictionary import keywords
 from printing_functions import main_menu,thanks
 def search():
     input_keyword = input("Please enter the keyword: ")
-    for key, value in keywords.items():
-        if input_keyword.lower() == key.lower():
-            print("Name:", value["name"])
-            print("Description:", value["des"])
-            print("Sample Code:", value["sc"])
-            break
-    else:
-        print("Name not found")
+    while input_keyword.lower() != "back":
+        for key, value in keywords.items():
+            if input_keyword.lower() == key.lower():
+                print("Name:", value["name"])
+                print("Description:", value["des"])
+                print("Sample Code:", value["sc"])
+                break
+        else:
+            print("Name not found")
 
 
 def remove():
+    
     input_keyword = input("Please enter the keyword: ")
     for key, value in keywords.items():
         if input_keyword.lower() == key.lower():
@@ -48,8 +50,10 @@ def export():
             print(str(count)+".", file=f)
             for key, value in value.items():
                 f.write(key + ": " + value + "\n")
-                f.write("********************************************************************\n")
-
+            f.write("********************************************************************\n")
+    print("File exported")
+    main_menu()
+    user_input()
 
 def user_input():
     menu=input("Please enter your choice: ")
