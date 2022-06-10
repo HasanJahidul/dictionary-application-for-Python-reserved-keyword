@@ -1,4 +1,5 @@
 from dictionary import keywords
+from printing_functions import main_menu,thanks
 def search():
     input_keyword = input("Please enter the keyword: ")
     for key, value in keywords.items():
@@ -32,10 +33,13 @@ def show_all():
         count+=1
         print("Keyword", count, ":", key)
         for key, value in value.items():
-            print("Name:", value["name"])
-            print("Description:", value["des"])
-            print("Sample Code:", value["sc"])
-            print("********************************************************************")
+            print(key+": ", value)
+        print("********************************************************************")
+    print("********************************************************************")
+    main_menu()
+    user_input()
+            
+
 def export():
     with open("keywords.txt", "w") as f:
         count = 0
@@ -47,5 +51,27 @@ def export():
                 f.write("********************************************************************\n")
 
 
+def user_input():
+    menu=input("Please enter your choice: ")
+    while menu!="8":
+        if menu=="1":
+            # add_keyword_menu()
+            print("Add a new keyword")
+        elif menu=="2":
+            # update_menu()
+            print("Update a keyword")
+        elif menu=="3":
+            remove()
+        elif menu=="4":
+            show_all()
+        elif menu=="5":
+            search()
+        elif menu=="6":
+            export()
+        elif menu=="7":
+            remove_all()
+        else:
+            print("Invalid choice")
+    thanks()
 
 
