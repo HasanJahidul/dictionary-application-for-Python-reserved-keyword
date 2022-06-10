@@ -1,8 +1,9 @@
 from dictionary import keywords
 from printing_functions import main_menu,thanks
 def search():
+    print("Wanna go back? Press 'b'")
     input_keyword = input("Please enter the keyword: ")
-    while input_keyword.lower() != "back":
+    while input_keyword.lower() != "b":
         for key, value in keywords.items():
             if input_keyword.lower() == key.lower():
                 print("Name:", value["name"])
@@ -11,18 +12,27 @@ def search():
                 break
         else:
             print("Name not found")
+        break
+    else:
+        main_menu()
+        user_input()
 
 
 def remove():
-    
+    print("Wanna go back? Press 'b'")
     input_keyword = input("Please enter the keyword: ")
-    for key, value in keywords.items():
-        if input_keyword.lower() == key.lower():
-            del keywords[key]
-            print("Keyword removed successfully")
-            break
+    while input_keyword.lower() != "b":
+        for key, value in keywords.items():
+            if input_keyword.lower() == key.lower():
+                del keywords[key]
+                print("Keyword removed successfully")
+                break
+        else:
+            print("Keyword not found")
+        break
     else:
-        print("Keyword not found")
+        main_menu()
+        user_input()
 
 def remove_all():
     keywords.clear()
