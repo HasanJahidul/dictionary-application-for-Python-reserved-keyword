@@ -1,5 +1,5 @@
 from dictionary import keywords
-from printing_functions import main_menu, thanks
+from printing_functions import main_menu, thanks,update_menu
 
 
 def add_keyword():
@@ -26,7 +26,50 @@ def add_keyword():
         main_menu()
         user_input()
 
+def update_keyword():
+    print("Wanna go back? Press 'b'")
+    input_keyword = input("Please enter the keyword: ")
+    while input_keyword.lower() != "b":
+        for key, value in keywords.items():
+            
+            if input_keyword.lower() == key.lower():
+                print("Name:", value["name"])
+                print("Description:", value["des"])
+                print("sample Code:", value["sc"])
+                update_menu()
+                user_input_update(value["name"])
 
+                break
+        else:
+            print("Keyword not found")
+        break
+    else:
+        main_menu()
+        user_input()
+def user_input_update(input_keyword):
+    menu = input("Please enter your choice: ")
+    while menu != "4":
+        if menu == "1":
+            input_name = input("Please enter the new keyword: ")
+            keywords[input_keyword]["name"] = input_name
+            print("Keyword name updated")
+            break
+        elif menu == "2":
+            input_description = input("Please enter the new description: ")
+            keywords[input_keyword]["des"] = input_description
+            print("Keyword description updated")
+            break
+        elif menu == "3":
+            input_sample_code = input("Please enter the new sample code: ")
+            keywords[input_keyword]["sc"] = input_sample_code
+            print("Keyword sample code updated")
+            break
+        else:
+            print("Invalid choice")
+            break
+    main_menu()
+    user_input()
+    
 
 
 
@@ -104,8 +147,7 @@ def user_input():
         if menu == "1":
             add_keyword()
         elif menu == "2":
-            # update_menu()
-            print("Update a keyword")
+            update_keyword()
         elif menu == "3":
             remove()
         elif menu == "4":

@@ -32,3 +32,6 @@ def thanks():
     print("Please visit again!")
     print("********************************************************************")
     sys.exit("Goodbye, have a nice day ahead!")
+
+
+    
