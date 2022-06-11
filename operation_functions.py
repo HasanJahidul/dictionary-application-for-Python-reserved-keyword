@@ -1,5 +1,35 @@
 from dictionary import keywords
-from printing_functions import main_menu,thanks
+from printing_functions import main_menu, thanks
+
+
+def add_keyword():
+    print("Wanna go back? Press 'b'")
+    input_keyword = input("Please enter the keyword: ")
+    
+    while input_keyword.lower() != "b":
+        for key, value in keywords.items():
+            if input_keyword.lower() == key.lower():
+                print("Keyword already exists")
+                break
+        else:
+            input_description = input("Please enter the description: ")
+            input_sample_code = input("Please enter the sample code: ")
+            keywords[input_keyword] = {
+                "name": input_keyword,
+                "des": input_description,
+                "sc": input_sample_code
+            }
+            print("Keyword added successfully")
+            break
+        break
+    else:
+        main_menu()
+        user_input()
+
+
+
+
+
 def search():
     print("Wanna go back? Press 'b'")
     input_keyword = input("Please enter the keyword: ")
@@ -34,15 +64,16 @@ def remove():
         main_menu()
         user_input()
 
+
 def remove_all():
     keywords.clear()
     print("All keywords removed successfully")
 
 
 def show_all():
-    count=0
+    count = 0
     for key, value in keywords.items():
-        count+=1
+        count += 1
         print("Keyword", count, ":", key)
         for key, value in value.items():
             print(key+": ", value)
@@ -50,7 +81,7 @@ def show_all():
     print("********************************************************************")
     main_menu()
     user_input()
-            
+
 
 def export():
     with open("keywords.txt", "w") as f:
@@ -60,32 +91,31 @@ def export():
             print(str(count)+".", file=f)
             for key, value in value.items():
                 f.write(key + ": " + value + "\n")
-            f.write("********************************************************************\n")
+            f.write(
+                "********************************************************************\n")
     print("File exported")
     main_menu()
     user_input()
 
+
 def user_input():
-    menu=input("Please enter your choice: ")
-    while menu!="8":
-        if menu=="1":
-            # add_keyword_menu()
-            print("Add a new keyword")
-        elif menu=="2":
+    menu = input("Please enter your choice: ")
+    while menu != "8":
+        if menu == "1":
+            add_keyword()
+        elif menu == "2":
             # update_menu()
             print("Update a keyword")
-        elif menu=="3":
+        elif menu == "3":
             remove()
-        elif menu=="4":
+        elif menu == "4":
             show_all()
-        elif menu=="5":
+        elif menu == "5":
             search()
-        elif menu=="6":
+        elif menu == "6":
             export()
-        elif menu=="7":
+        elif menu == "7":
             remove_all()
         else:
             print("Invalid choice")
     thanks()
-
-
